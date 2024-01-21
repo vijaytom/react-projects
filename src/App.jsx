@@ -6,11 +6,7 @@ import TodoStatus from "./components/TodoStatus";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  const [todoItem, setTodoItem] = useState([{
-    completed: false,
-    id: "gau6stauysgvj",
-    name: "Hello"
-  }]);
+  const [todoItem, setTodoItem] = useState([]);
   const addItem = (props) => {
     setTodoItem([...props])
   }
@@ -27,9 +23,9 @@ export default function App() {
         </div>
         <div className="bg-slate-200 rounded-md mt-5 p-4">
           {
-            todoItem.map(item => {
-              <TodosItem key={item.id} obj={item} />
-            })
+            todoItem.map(item => (
+              <TodosItem key={item.id} obj={item} todoItem={todoItem} addItem={addItem} setShowModal={setShowModal} />
+            ))
           }
         </div>
       </div>

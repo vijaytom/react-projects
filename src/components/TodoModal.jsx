@@ -3,20 +3,25 @@ import TodoStatus from "./TodoStatus";
 
 export default function TodoModal(props) {
     const [itemName, setItemName] = useState("");
+    const [completed, setCompleted] = useState("incomplete");
     const handleInput = (e) => {
         setItemName(e.target.value);
     }
     const handleClick = (e) => {
         e.preventDefault();
         if (itemName) {
+            console.log(completed);
             props.addItem([...props.todoItem, {
-                id: Math.random(),
+                id: 'v' + Math.floor(Math.random() * 100),
                 name: itemName,
-                completed: false
+                completed: completed === "incomplete" ? false : true
             }]);
             setItemName("");
             handleClose();
         }
+    }
+    const handleSelect = (e) => {
+        setCompleted(e.target.value);
     }
     const handleClose = () => {
         props.setShowModal(false);
@@ -36,14 +41,15 @@ export default function TodoModal(props) {
                         <h1 className="text-lg text-center">Add Todo</h1>
                         <label>Title</label>
                         <form>
-                            <input type="text" name="title" className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-full p-2.5" placeholder="Type here.."
+                            <input type="text" name="title" id="todoTitle" className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-full p-2.5" placeholder="Type here.."
                                 onChange={e => handleInput(e)} value={itemName} required />
                             <label className="block mt-4">Status</label>
-                            <TodoStatus defValue={"incomplete"} class={"mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"} />
+                            <TodoStatus class={"mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500"}
+                                handleSelect={handleSelect} completed={completed} />
                             <button type="submit" className="mt-8 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                                 onClick={(e) => handleClick(e)}>Add Task</button>
                             <button type="button" className=" ms-4 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                onClick={()=>handleClose}>Cancel</button>
+                                onClick={() => handleClose()}>Cancel</button>
                         </form>
                     </div>
                 </div>
