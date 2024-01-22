@@ -1,11 +1,10 @@
-import { useState } from "react";
 import TodoStatus from "./TodoStatus";
 
 export default function TodoModal(props) {
-    const [itemName, setItemName] = useState("");
-    const [completed, setCompleted] = useState("incomplete");
+   const completed = props.completed;
+   const itemName = props.itemName;
     const handleInput = (e) => {
-        setItemName(e.target.value);
+        props.setItem(e.target.value);
     }
     const handleClick = (e) => {
         e.preventDefault();
@@ -16,12 +15,12 @@ export default function TodoModal(props) {
                 name: itemName,
                 completed: completed === "incomplete" ? false : true
             }]);
-            setItemName("");
+            props.setItem("");
             handleClose();
         }
     }
     const handleSelect = (e) => {
-        setCompleted(e.target.value);
+        props.setComplete(e.target.value);
     }
     const handleClose = () => {
         props.setShowModal(false);

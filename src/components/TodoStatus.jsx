@@ -1,4 +1,5 @@
 export default function TodoStatus(props) {
+    console.log(props.completed);
     const handleSelect = (e)=>{
         props.handleSelect(e);
     }

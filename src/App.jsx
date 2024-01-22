@@ -7,8 +7,16 @@ import TodoStatus from "./components/TodoStatus";
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [todoItem, setTodoItem] = useState([]);
+  const [itemName, setItemName] = useState("");
+  const [completed, setCompleted] = useState("incomplete");
   const addItem = (props) => {
     setTodoItem([...props])
+  }
+  const setItem = (props)=>{
+    setItemName(props);
+  }
+  const setComplete = (props)=>{
+    setCompleted(props);
   }
   console.log(todoItem)
   return (
@@ -24,14 +32,14 @@ export default function App() {
         <div className="bg-slate-200 rounded-md mt-5 p-4">
           {
             todoItem.map(item => (
-              <TodosItem key={item.id} obj={item} todoItem={todoItem} addItem={addItem} setShowModal={setShowModal} />
+              <TodosItem key={item.id} obj={item} todoItem={todoItem} addItem={addItem} setItem={setItem} setComplete={setComplete} setShowModal={setShowModal} />
             ))
           }
         </div>
       </div>
       {
         showModal && (
-          <TodoModal setShowModal={setShowModal} addItem={addItem} todoItem={todoItem} />
+          <TodoModal setShowModal={setShowModal} addItem={addItem} itemName={itemName} setItem={setItem} completed={completed} setComplete={setComplete} todoItem={todoItem} />
         )
       }
     </div>

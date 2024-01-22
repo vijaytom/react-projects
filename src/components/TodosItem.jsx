@@ -6,17 +6,22 @@ import { useEffect, useState } from "react";
 export default function TodosItem(props) {
     const data = props.todoItem;
     const [checked, setChecked] = useState(false);
-    const handleChange = () => {
+    const handleChange = (objID) => {
         setChecked(!checked);
+        const newData = data.filter(item => item.id === objID);
+        newData[0].completed = !checked;
+        props.addItem([...data]);
+        props.setComplete(newData[0].completed ? 'complete' : 'incomplete');
     }
     useEffect(() => {
         setChecked(props.obj.completed);
     }, [props.obj.completed]);
-    const handleEdit = (objID) => {
-        props.setShowModal(true);
-        // work here
+    const handleEdit = async (objID) => {
+        await props.setShowModal(true);
         const newData = data.filter(item => item.id === objID);
         console.log(newData);
+        await props.setItem(newData[0].name);
+        await props.setComplete(newData[0].completed ? 'complete' : 'incomplete');
     }
     const handleDelete = (objID) => {
         const newData = data.filter(item => item.id !== objID);
@@ -26,7 +31,7 @@ export default function TodosItem(props) {
         <div className="flex justify-between bg-white rounded-sm w-full p-2">
             <div className="flex items-center gap-3">
                 <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    onChange={() => handleChange()} checked={checked} />
+                    onChange={() => handleChange(props.obj.id)} checked={checked} />
                 <label className={checked ? "line-through text-zinc-500" : ""}>{props.obj.name}</label>
             </div>
             <div className="flex items-center gap-3">
