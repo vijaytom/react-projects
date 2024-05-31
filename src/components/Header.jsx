@@ -6,7 +6,7 @@ export default function Header() {
         <nav className="flex justify-between p-4 px-10">
             <img src="vite.svg" className="h-9 object-contain"></img>
             <ul className="flex space-x-10">
-                <List id={1} name={'Homes'}/>
+                <List id={1} name={'Homee'}/>
                 <List id={2} name={'About me'}/>
                 <List id={3} name={'My Works'}/>
                 <li>
