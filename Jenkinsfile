@@ -9,7 +9,7 @@ pipeline {
                 script {
                     sh '''
                         cd /home/vijay/scripts/react-1/
-                        ./deploy.sh
+                        sudo ./deploy.sh
                     '''
                 }
             }
