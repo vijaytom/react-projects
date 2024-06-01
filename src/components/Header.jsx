@@ -10,7 +10,7 @@ export default function Header() {
                 <List id={2} name={'About You'}/>
                 <List id={3} name={'My Works'}/>
                 <li>
-                    <button>Contact me</button>
+                    <button>Contact Hello</button>
                 </li>
             </ul>
         </nav>
