@@ -7,7 +7,7 @@ export default function Header() {
             <img src="vite.svg" className="h-9 object-contain"></img>
             <ul className="flex space-x-10">
                 <List id={1} name={'Home'}/>
-                <List id={2} name={'About me'}/>
+                <List id={2} name={'About You'}/>
                 <List id={3} name={'My Works'}/>
                 <li>
                     <button>Contact me</button>
