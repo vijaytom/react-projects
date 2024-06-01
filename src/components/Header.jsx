@@ -8,7 +8,7 @@ export default function Header() {
             <ul className="flex space-x-10">
                 <List id={1} name={'Home'}/>
                 <List id={2} name={'About You'}/>
-                <List id={3} name={'My Works'}/>
+                <List id={3} name={'My Work'}/>
                 <li>
                     <button>Contact Hello</button>
                 </li>
